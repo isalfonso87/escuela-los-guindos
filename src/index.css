@@ -1,0 +1,1024 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   ÍNDICE DE CONTENIDOS
+   1. VARIABLES (DESIGN TOKENS)
+   2. RESET Y ESTILOS BASE
+   3. UTILIDADES Y LAYOUT (Contenedores, Grids, Secciones)
+   4. COMPONENTES REUTILIZABLES (Botones, Badges, Avatares)
+   5. BLOQUES BEM (Componentes específicos)
+      5.1 Navbar y Logo
+      5.2 Hero
+      5.3 About (Nosotros) y Pilares
+      5.4 Band (PIE / Personal)
+      5.5 Cursos
+      5.6 Testimonios
+      5.7 Descargas
+      5.8 FAQ (Preguntas Frecuentes)
+      5.9 Contacto y Formulario
+      5.10 Footer
+   6. MEDIA QUERIES (Responsive)
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES (DESIGN TOKENS)
+   ============================================================ */
+:root {
+  /* Paleta Institucional */
+  --marca-primario: #5B215E;         /* Ciruela */
+  --marca-primario-oscuro: #3A1240;  /* Ciruela oscuro */
+  --marca-primario-claro: #F0E6F0;   /* Ciruela muy claro */
+  
+  --marca-secundario: #C49A37;       /* Dorado */
+  --marca-secundario-claro: #F9F3E3; /* Dorado claro */
+  
+  --marca-terciario: #1A5D3A;        /* Verde Bosque */
+  --marca-terciario-claro: #E6F0EB;  /* Verde claro */
+  
+  --marca-alerta: #7B1E26;           /* Rojo oscuro */
+
+  /* Neutros y Superficies */
+  --fondo-app: #FAFAFA;
+  --fondo-tarjeta: #FFFFFF;
+  --texto-principal: #1F1A24;
+  --texto-suave: #5A5560;
+  --borde: #E5E0E8;
+  
+  /* Sombras y Radios */
+  --sombra-suave: 0 4px 12px rgba(91, 33, 94, 0.05);
+  --sombra-media: 0 10px 30px rgba(91, 33, 94, 0.08);
+  --radio: 18px;
+}
+
+
+/* ============================================================
+   2. RESET Y ESTILOS BASE
+   ============================================================ */
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--texto-principal);
+  background: var(--fondo-app);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { 
+  max-width: 100%; 
+  display: block; 
+}
+
+a { 
+  color: inherit; 
+  text-decoration: none; 
+}
+
+ul { 
+  list-style: none; 
+}
+
+
+/* ============================================================
+   3. UTILIDADES Y LAYOUT
+   ============================================================ */
+/* Contenedores */
+.container { 
+  width: min(1120px, 92%); 
+  margin-inline: auto; 
+}
+
+/* Secciones */
+.section { 
+  padding: 4.5rem 0; 
+}
+
+.section--alt { 
+  background: var(--fondo-tarjeta); 
+  border-top: 1px solid var(--borde); 
+  border-bottom: 1px solid var(--borde); 
+}
+
+/* Encabezados de sección */
+.section__head { 
+  text-align: center; 
+  max-width: 640px; 
+  margin: 0 auto 2.5rem; 
+}
+
+.section__head h2 { 
+  font-size: clamp(1.6rem, 4vw, 2.3rem); 
+  margin-bottom: 0.5rem; 
+  color: var(--marca-primario); 
+}
+
+.section__head p { 
+  color: var(--texto-suave); 
+}
+
+.eyebrow { 
+  font-size: 0.78rem; 
+  font-weight: 700; 
+  letter-spacing: 0.14em; 
+  text-transform: uppercase; 
+  color: var(--marca-secundario); 
+  margin-bottom: 0.4rem; 
+}
+
+.eyebrow--claro { 
+  color: var(--fondo-app); 
+  opacity: 0.9; 
+}
+
+/* Grids */
+.grid { 
+  display: grid; 
+  gap: 1.5rem; 
+}
+
+.grid--3 { 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+}
+
+
+/* ============================================================
+   4. COMPONENTES REUTILIZABLES
+   ============================================================ */
+/* Botones */
+.btn { 
+  display: inline-block; 
+  padding: 0.75rem 1.5rem; 
+  border-radius: 999px; 
+  font-weight: 600; 
+  font-size: 0.95rem; 
+  transition: all 0.2s ease; 
+  cursor: pointer; 
+  border: 2px solid transparent; 
+  text-align: center; 
+}
+
+.btn:hover { 
+  transform: translateY(-2px); 
+}
+
+.btn--primary { 
+  background: var(--marca-primario); 
+  color: #ffffff; 
+}
+
+.btn--primary:hover { 
+  background: var(--marca-primario-oscuro); 
+  box-shadow: 0 4px 12px rgba(91, 33, 94, 0.2); 
+  color: #ffffff; 
+}
+
+.btn--ghost { 
+  background: transparent; 
+  color: var(--marca-primario); 
+  border-color: var(--marca-primario); 
+}
+
+.btn--ghost:hover { 
+  background: var(--marca-primario); 
+  color: #ffffff; 
+}
+
+.btn--light { 
+  background: #ffffff; 
+  color: var(--marca-primario); 
+}
+
+.btn--light:hover { 
+  background: var(--fondo-app); 
+}
+
+.btn--sm { 
+  padding: 0.55rem 1.1rem; 
+  font-size: 0.85rem; 
+}
+
+/* Badges y Etiquetas */
+.badge { 
+  display: inline-block; 
+  background: var(--marca-secundario-claro); 
+  color: var(--marca-primario-oscuro); 
+  font-size: 0.78rem; 
+  font-weight: 700; 
+  padding: 0.3rem 0.85rem; 
+  border-radius: 999px; 
+  margin-bottom: 1rem; 
+  border: 1px solid rgba(196, 154, 55, 0.3); 
+}
+
+/* Avatares */
+.avatar { 
+  width: 44px; 
+  height: 44px; 
+  border-radius: 50%; 
+  background: var(--marca-primario-claro); 
+  color: var(--marca-primario); 
+  display: grid; 
+  place-items: center; 
+  font-size: 0.85rem; 
+  font-weight: 800; 
+  flex-shrink: 0; 
+}
+
+
+/* ============================================================
+   5. BLOQUES BEM (Componentes Específicos)
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   5.1 Navbar y Logo
+   ------------------------------------------------------------ */
+.nav { 
+  position: sticky; 
+  top: 0; 
+  z-index: 50; 
+  background: rgba(250, 250, 250, 0.95); 
+  backdrop-filter: blur(10px); 
+  border-bottom: 1px solid var(--borde); 
+}
+
+.nav__inner { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 1rem; 
+  padding: 0.8rem 0; 
+}
+
+.logo { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.8rem; 
+  color: var(--marca-primario); 
+}
+
+.logo__img { 
+  width: 50px; 
+  height: 50px; 
+  flex-shrink: 0; 
+  object-fit: contain; 
+}
+
+.logo__text { 
+  display: flex; 
+  flex-direction: column; 
+  line-height: 1.1; 
+}
+
+.logo__text strong { 
+  font-size: 1.05rem; 
+  color: var(--marca-primario); 
+}
+
+.logo__text small { 
+  font-size: 0.7rem; 
+  letter-spacing: 0.08em; 
+  text-transform: uppercase; 
+  color: var(--texto-suave); 
+}
+
+/* Menú Hamburguesa */
+.nav__toggle { 
+  display: none; 
+  background: none; 
+  border: none; 
+  padding: 0.5rem; 
+  cursor: pointer; 
+}
+
+.burger, .burger::before, .burger::after { 
+  display: block; 
+  width: 24px; 
+  height: 2px; 
+  background: var(--marca-primario); 
+  border-radius: 2px; 
+  transition: 0.3s; 
+}
+
+.burger { 
+  position: relative; 
+}
+
+.burger::before, .burger::after { 
+  content: ''; 
+  position: absolute; 
+  left: 0; 
+}
+
+.burger::before { top: -7px; }
+.burger::after  { top: 7px; }
+
+.burger.is-open { background: transparent; }
+.burger.is-open::before { top: 0; transform: rotate(45deg); }
+.burger.is-open::after { top: 0; transform: rotate(-45deg); }
+
+/* Menú de Navegación */
+.nav__menu { 
+  display: flex; 
+  align-items: center; 
+  gap: 1.5rem; 
+}
+
+.nav__menu ul { 
+  display: flex; 
+  gap: 1.2rem; 
+  align-items: center; 
+}
+
+.nav__menu ul a { 
+  font-size: 0.9rem; 
+  font-weight: 600; 
+  color: var(--texto-principal); 
+  transition: color 0.2s; 
+}
+
+.nav__menu ul a:hover { 
+  color: var(--marca-primario); 
+}
+
+/* Corrección de contraste del botón en el Navbar */
+.nav__menu .btn--primary { color: #ffffff; }
+.nav__menu .btn--primary:hover { color: #ffffff; }
+
+
+/* ------------------------------------------------------------
+   5.2 Hero
+   ------------------------------------------------------------ */
+.hero { 
+  padding: 3.5rem 0 4rem; 
+  background: linear-gradient(180deg, var(--marca-primario-claro) 0%, var(--fondo-app) 100%); 
+}
+
+.hero__inner { 
+  display: grid; 
+  grid-template-columns: 1.1fr 0.9fr; 
+  gap: 2.5rem; 
+  align-items: center; 
+}
+
+.hero h1 { 
+  font-size: clamp(2rem, 5vw, 3rem); 
+  line-height: 1.15; 
+  color: var(--marca-primario); 
+  margin-bottom: 1rem; 
+}
+
+.hero h1 em { 
+  font-style: normal; 
+  color: var(--marca-secundario); 
+}
+
+.hero__lead { 
+  color: var(--texto-suave); 
+  max-width: 48ch; 
+  margin-bottom: 1.5rem; 
+  font-size: 1.05rem; 
+}
+
+.hero__actions { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 0.8rem; 
+  margin-bottom: 2rem; 
+}
+
+.hero__stats { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 1.5rem 2.5rem; 
+}
+
+.hero__stats li { 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.hero__stats strong { 
+  font-size: 1.6rem; 
+  color: var(--marca-primario); 
+  font-weight: 800; 
+}
+
+.hero__stats span { 
+  font-size: 0.85rem; 
+  color: var(--texto-suave); 
+  font-weight: 500; 
+}
+
+.hero__media { 
+  display: flex; 
+  justify-content: center; 
+}
+
+.hero__art { 
+  width: 100%; 
+  max-width: 440px; 
+  aspect-ratio: 11 / 9; 
+  object-fit: cover; 
+  border-radius: var(--radio); 
+  box-shadow: var(--sombra-media); 
+  border: 4px solid #ffffff; 
+}
+
+
+/* ------------------------------------------------------------
+   5.3 About (Nosotros) y Pilares
+   ------------------------------------------------------------ */
+.about { 
+  display: grid; 
+  grid-template-columns: 1.1fr 0.9fr; 
+  gap: 3rem; 
+  align-items: start; 
+}
+
+.about__text h2 { 
+  font-size: clamp(1.6rem, 4vw, 2.2rem); 
+  color: var(--marca-primario); 
+  margin-bottom: 1rem; 
+}
+
+.about__text p { 
+  color: var(--texto-suave); 
+  margin-bottom: 1rem; 
+  font-size: 1.05rem; 
+}
+
+.about__text .btn { margin-top: 0.5rem; }
+
+.about__cards { 
+  display: grid; 
+  gap: 1rem; 
+}
+
+.pillar { 
+  background: var(--fondo-app); 
+  padding: 1.5rem; 
+  border-radius: var(--radio); 
+  border-left: 4px solid var(--marca-secundario); 
+  box-shadow: var(--sombra-suave); 
+}
+
+.pillar h3 { 
+  font-size: 1.1rem; 
+  color: var(--marca-primario); 
+  margin-bottom: 0.3rem; 
+}
+
+.pillar p { 
+  font-size: 0.95rem; 
+  color: var(--texto-suave); 
+}
+
+
+/* ------------------------------------------------------------
+   5.4 Band (PIE / Personal)
+   ------------------------------------------------------------ */
+.band { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 1.5rem; 
+}
+
+.band__card { 
+  padding: 2.5rem 2rem; 
+  border-radius: var(--radio); 
+  color: #ffffff; 
+  box-shadow: var(--sombra-media); 
+}
+
+.band__card h3 { 
+  font-size: 1.4rem; 
+  margin-bottom: 0.6rem; 
+  color: #ffffff; 
+}
+
+.band__card p { 
+  font-size: 0.95rem; 
+  margin-bottom: 1.5rem; 
+  opacity: 0.9; 
+}
+
+.band__card--verde { 
+  background: linear-gradient(135deg, var(--marca-primario), var(--marca-primario-oscuro)); 
+}
+
+.band__card--tierra { 
+  background: linear-gradient(135deg, var(--marca-terciario), #124229); 
+}
+
+
+/* ------------------------------------------------------------
+   5.5 Cursos
+   ------------------------------------------------------------ */
+.curso { 
+  background: var(--fondo-tarjeta); 
+  padding: 1.8rem; 
+  border-radius: var(--radio); 
+  border: 1px solid var(--borde); 
+  transition: all 0.2s; 
+  box-shadow: var(--sombra-suave); 
+}
+
+.curso:hover { 
+  transform: translateY(-4px); 
+  box-shadow: var(--sombra-media); 
+  border-color: var(--marca-secundario); 
+}
+
+.curso__icon { 
+  font-size: 2.2rem; 
+  display: block; 
+  margin-bottom: 0.8rem; 
+}
+
+.curso h3 { 
+  font-size: 1.15rem; 
+  color: var(--marca-primario); 
+  margin-bottom: 0.3rem; 
+}
+
+.curso__edad { 
+  display: inline-block; 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  color: var(--marca-primario-oscuro); 
+  background: var(--marca-secundario-claro); 
+  padding: 0.2rem 0.6rem; 
+  border-radius: 999px; 
+  margin-bottom: 0.8rem; 
+}
+
+.curso p { 
+  font-size: 0.92rem; 
+  color: var(--texto-suave); 
+}
+
+
+/* ------------------------------------------------------------
+   5.6 Testimonios
+   ------------------------------------------------------------ */
+.testimonio { 
+  background: var(--fondo-tarjeta); 
+  padding: 2.5rem 1.8rem 1.8rem; 
+  border-radius: var(--radio); 
+  position: relative; 
+  border: 1px solid var(--borde); 
+  box-shadow: var(--sombra-suave); 
+}
+
+.testimonio__mark { 
+  position: absolute; 
+  top: -0.8rem; 
+  left: 1rem; 
+  font-size: 4.5rem; 
+  line-height: 1; 
+  color: var(--marca-secundario-claro); 
+  font-family: Georgia, serif; 
+}
+
+.testimonio blockquote { 
+  font-size: 0.95rem; 
+  color: var(--texto-principal); 
+  margin-bottom: 1.5rem; 
+  font-style: italic; 
+  position: relative; 
+  z-index: 1; 
+}
+
+.testimonio figcaption { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.8rem; 
+}
+
+.testimonio figcaption span:last-child { 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.testimonio figcaption strong { 
+  font-size: 0.95rem; 
+  color: var(--marca-primario); 
+}
+
+.testimonio figcaption small { 
+  font-size: 0.8rem; 
+  color: var(--texto-suave); 
+}
+
+
+/* ------------------------------------------------------------
+   5.7 Descargas
+   ------------------------------------------------------------ */
+.descarga { 
+  background: var(--fondo-tarjeta); 
+  padding: 1.8rem; 
+  border-radius: var(--radio); 
+  border: 1px solid var(--borde); 
+  display: flex; 
+  flex-direction: column; 
+  transition: all 0.2s; 
+  box-shadow: var(--sombra-suave); 
+}
+
+.descarga:hover { 
+  transform: translateY(-4px); 
+  box-shadow: var(--sombra-media); 
+  border-color: var(--marca-primario); 
+}
+
+.descarga__icon { 
+  width: 48px; 
+  height: 48px; 
+  display: grid; 
+  place-items: center; 
+  background: var(--marca-primario-claro); 
+  border-radius: 12px; 
+  color: var(--marca-primario); 
+  margin-bottom: 1rem; 
+  flex-shrink: 0; 
+}
+
+.descarga__icon svg { 
+  width: 28px; 
+  height: 28px; 
+}
+
+.descarga h3 { 
+  font-size: 1.05rem; 
+  color: var(--marca-primario); 
+  margin-bottom: 0.4rem; 
+  line-height: 1.3; 
+}
+
+.descarga p { 
+  font-size: 0.9rem; 
+  color: var(--texto-suave); 
+  margin-bottom: 1.2rem; 
+  flex: 1; 
+}
+
+.descarga__meta { 
+  display: flex; 
+  flex-wrap: wrap; 
+  align-items: center; 
+  gap: 0.5rem; 
+  font-size: 0.78rem; 
+  color: var(--texto-suave); 
+  margin-bottom: 1.2rem; 
+  font-weight: 500; 
+}
+
+.descarga__badge { 
+  background: var(--marca-primario); 
+  color: #ffffff; 
+  padding: 0.15rem 0.5rem; 
+  border-radius: 4px; 
+  font-weight: 700; 
+  font-size: 0.7rem; 
+  letter-spacing: 0.06em; 
+}
+
+.descarga__btn { 
+  align-self: flex-start; 
+  width: 100%; 
+}
+
+
+/* ------------------------------------------------------------
+   5.8 FAQ (Preguntas Frecuentes)
+   ------------------------------------------------------------ */
+.faq { 
+  display: grid; 
+  grid-template-columns: 0.9fr 1.1fr; 
+  gap: 3rem; 
+  align-items: start; 
+}
+
+.faq__head h2 { 
+  font-size: clamp(1.6rem, 4vw, 2.2rem); 
+  color: var(--marca-primario); 
+  margin-bottom: 0.8rem; 
+}
+
+.faq__head p { 
+  color: var(--texto-suave); 
+}
+
+.faq__list { 
+  display: grid; 
+  gap: 0.8rem; 
+}
+
+.faq__item { 
+  background: var(--fondo-tarjeta); 
+  border-radius: 14px; 
+  overflow: hidden; 
+  border: 1px solid var(--borde); 
+}
+
+.faq__q { 
+  width: 100%; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 1rem; 
+  padding: 1.1rem 1.3rem; 
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 0.98rem; 
+  font-weight: 600; 
+  color: var(--marca-primario); 
+  text-align: left; 
+}
+
+.faq__icon { 
+  font-size: 1.4rem; 
+  line-height: 1; 
+  color: var(--marca-secundario); 
+  transition: transform 0.25s; 
+}
+
+.faq__item.is-open .faq__icon { 
+  transform: rotate(45deg); 
+}
+
+.faq__a { 
+  display: grid; 
+  grid-template-rows: 0fr; 
+  transition: grid-template-rows 0.3s ease; 
+}
+
+.faq__item.is-open .faq__a { 
+  grid-template-rows: 1fr; 
+}
+
+.faq__a > div { 
+  overflow: hidden; 
+}
+
+.faq__a p { 
+  padding: 0 1.3rem 1.3rem; 
+  font-size: 0.92rem; 
+  color: var(--texto-suave); 
+}
+
+
+/* ------------------------------------------------------------
+   5.9 Contacto y Formulario
+   ------------------------------------------------------------ */
+.contacto { 
+  display: grid; 
+  grid-template-columns: 0.9fr 1.1fr; 
+  gap: 3rem; 
+  align-items: start; 
+}
+
+.contacto__info h2 { 
+  font-size: clamp(1.6rem, 4vw, 2.2rem); 
+  color: var(--marca-primario); 
+  margin-bottom: 0.6rem; 
+}
+
+.contacto__info > p { 
+  color: var(--texto-suave); 
+  margin-bottom: 1.5rem; 
+}
+
+.contacto__datos { 
+  display: grid; 
+  gap: 1.2rem; 
+}
+
+.contacto__datos li { 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.contacto__datos strong { 
+  font-size: 0.8rem; 
+  text-transform: uppercase; 
+  letter-spacing: 0.08em; 
+  color: var(--marca-secundario); 
+  margin-bottom: 0.2rem; 
+}
+
+.contacto__datos a, .contacto__datos span { 
+  color: var(--texto-principal); 
+  font-weight: 500; 
+}
+
+.contacto__datos a:hover { 
+  color: var(--marca-primario); 
+  text-decoration: underline; 
+}
+
+/* Formulario */
+.form { 
+  background: var(--fondo-tarjeta); 
+  padding: 2.5rem; 
+  border-radius: var(--radio); 
+  box-shadow: var(--sombra-media); 
+  display: grid; 
+  gap: 1.2rem; 
+  border: 1px solid var(--borde); 
+}
+
+.form__row { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1.2rem; 
+}
+
+.form .btn { justify-self: start; }
+
+.form__ok { 
+  background: var(--marca-terciario-claro); 
+  color: var(--marca-terciario); 
+  padding: 1rem; 
+  border-radius: 10px; 
+  font-size: 0.9rem; 
+  font-weight: 600; 
+  border: 1px solid rgba(26, 93, 58, 0.2); 
+}
+
+/* Campos del formulario */
+.campo { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.4rem; 
+}
+
+.campo label { 
+  font-size: 0.85rem; 
+  font-weight: 700; 
+  color: var(--marca-primario); 
+}
+
+.campo input, .campo select, .campo textarea { 
+  padding: 0.8rem 1rem; 
+  border: 1.5px solid var(--borde); 
+  border-radius: 10px; 
+  font-family: inherit; 
+  font-size: 0.95rem; 
+  background: var(--fondo-app); 
+  transition: all 0.2s; 
+  color: var(--texto-principal); 
+}
+
+.campo input:focus, .campo select:focus, .campo textarea:focus { 
+  outline: none; 
+  border-color: var(--marca-secundario); 
+  box-shadow: 0 0 0 3px var(--marca-secundario-claro); 
+  background: #ffffff; 
+}
+
+.campo textarea { 
+  resize: vertical; 
+  min-height: 120px; 
+}
+
+
+/* ------------------------------------------------------------
+   5.10 Footer
+   ------------------------------------------------------------ */
+.footer { 
+  background: var(--marca-primario-oscuro); 
+  color: #ffffff; 
+  padding: 4rem 0 1.5rem; 
+}
+
+.footer__grid { 
+  display: grid; 
+  grid-template-columns: 1.4fr 1fr 1fr 1fr; 
+  gap: 2.5rem; 
+  margin-bottom: 3rem; 
+}
+
+.footer h4 { 
+  font-size: 0.85rem; 
+  text-transform: uppercase; 
+  letter-spacing: 0.1em; 
+  color: var(--marca-secundario); 
+  margin-bottom: 1rem; 
+}
+
+.footer ul { 
+  display: grid; 
+  gap: 0.6rem; 
+}
+
+.footer a { 
+  font-size: 0.9rem; 
+  transition: color 0.2s; 
+  color: var(--fondo-app); 
+  opacity: 0.8; 
+}
+
+.footer a:hover { 
+  color: var(--marca-secundario); 
+  opacity: 1; 
+}
+
+.footer__desc { 
+  font-size: 0.9rem; 
+  margin: 1rem 0; 
+  max-width: 32ch; 
+  opacity: 0.8; 
+}
+
+.footer__social { 
+  display: flex; 
+  gap: 0.8rem; 
+}
+
+.footer__social a { 
+  width: 38px; 
+  height: 38px; 
+  display: grid; 
+  place-items: center; 
+  border-radius: 50%; 
+  background: rgba(255, 255, 255, 0.1); 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  transition: all 0.2s; 
+}
+
+.footer__social a:hover { 
+  background: var(--marca-secundario); 
+  color: var(--marca-primario-oscuro); 
+  transform: translateY(-2px); 
+}
+
+.footer__bottom { 
+  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+  padding-top: 1.5rem; 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+  gap: 1rem; 
+  font-size: 0.8rem; 
+  opacity: 0.6; 
+}
+
+/* Convierte el logo a blanco en el footer para alto contraste */
+.footer .logo__img { 
+  filter: brightness(0) invert(1); 
+}
+
+
+/* ============================================================
+   6. MEDIA QUERIES (Responsive)
+   ============================================================ */
+@media (max-width: 860px) {
+  /* Navbar Móvil */
+  .nav__toggle { display: block; }
+  
+  .nav__menu { 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    right: 0; 
+    background: var(--fondo-tarjeta); 
+    flex-direction: column; 
+    align-items: flex-start; 
+    padding: 1.5rem 5%; 
+    gap: 1.5rem; 
+    border-bottom: 1px solid var(--borde); 
+    display: none; 
+    box-shadow: var(--sombra-media); 
+  }
+  
+  .nav__menu.is-open { display: flex; }
+  .nav__menu ul { flex-direction: column; align-items: flex-start; gap: 1rem; width: 100%; }
+  .nav__menu .btn { width: 100%; text-align: center; }
+
+  /* Layout principal */
+  .hero__inner, .about, .faq, .contacto { grid-template-columns: 1fr; }
+  .hero__media { order: -1; }
+  .hero__art { max-width: 100%; }
+  
+  /* Footer */
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+
+@media (max-width: 520px) {
+  .form__row { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; }
+  .hero__stats { gap: 1rem 1.5rem; }
+  .logo__text { display: none; } /* Oculta texto del logo en móvil */
+}
